@@ -1,0 +1,127 @@
+
+/* Basic page styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Gallery header */
+header {
+    text-align: center;
+    padding: 25px;
+    background-color: #222;
+    color: white;
+}
+
+/* Responsive photo grid */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 30px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Individual photo styling */
+.photo {
+    height: 300px;
+    width: 100%;
+    border: 3px solid #333;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Background images */
+.photo1 {
+    background-image: url("https://images.unsplash.com/photo-1472120435266-53107fd0c44a");
+}
+
+.photo2 {
+    background-image: url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b");
+}
+
+.photo3 {
+    background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+}
+
+.photo4 {
+    background-image: url("https://images.unsplash.com/photo-1448375240586-882707db888b");
+}
+
+.photo5 {
+    background-image: url("https://images.unsplash.com/photo-1519501025264-65ba15a82390");
+}
+
+.photo6 {
+    background-image: url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564");
+}
+
+/* Hover effect */
+.photo:hover {
+    transform: scale(1.05);
+}
+
+/* Different border for every other photo */
+.photo:nth-child(even) {
+    border: 3px solid #008080;
+}
+
+/* Caption overlay */
+.photo::before {
+    content: attr(data-caption);
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.75)
+    );
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Magnifying glass icon */
+.photo::after {
+    content: "🔍";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 35px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show overlay and icon on hover */
+.photo:hover::before,
+.photo:hover::after {
+    opacity: 1;
+}
+
+/* Tablet layout */
+@media (max-width: 900px) {
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+}
