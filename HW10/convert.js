@@ -6,6 +6,14 @@ function domLoaded() {
    const fInput = document.getElementById("fInput");
    const convertButton = document.getElementById("convertButton");
 
+cInput.addEventListener("input", function() {
+   fInput.value = "";
+});
+
+fInput.addEventListener("input", function() {
+   cInput.value = "";
+});
+
    convertButton.addEventListener("click", function() {
       if (cInput.value !== "") {
          const celsius = parseFloat(cInput.value);
