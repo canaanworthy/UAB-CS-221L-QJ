@@ -6,6 +6,7 @@ function domLoaded() {
    const fInput = document.getElementById("fInput");
    const convertButton = document.getElementById("convertButton");
 const weatherImage = document.getElementById("weatherImage");
+   const errorMessage = document.getElementById("errorMessage");
 cInput.addEventListener("input", function() {
    fInput.value = "";
 });
@@ -17,7 +18,14 @@ fInput.addEventListener("input", function() {
    convertButton.addEventListener("click", function() {
       if (cInput.value !== "") {
          const celsius = parseFloat(cInput.value);
-         fInput.value = convertCtoF(celsius);
+
+if (isNaN(celsius)) {
+   errorMessage.textContent = cInput.value + " is not a number";
+   return;
+}
+
+errorMessage.textContent = "";
+fInput.value = convertCtoF(celsius);
          if (fInput.value < 32) {
    weatherImage.src = "images/cold.png";
 }
@@ -30,7 +38,14 @@ else {
       }
       else if (fInput.value !== "") {
          const fahrenheit = parseFloat(fInput.value);
-         cInput.value = convertFtoC(fahrenheit);
+
+if (isNaN(fahrenheit)) {
+   errorMessage.textContent = fInput.value + " is not a number";
+   return;
+}
+
+errorMessage.textContent = "";
+cInput.value = convertFtoC(fahrenheit);
          if (fahrenheit < 32) {
    weatherImage.src = "images/cold.png";
 }
